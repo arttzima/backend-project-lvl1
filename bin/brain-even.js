@@ -1,12 +1,5 @@
 #!/usr/bin/env node
 
-import game from '../src/isEven.js';
-import { getName, greetUser } from '../src/cli.js';
+import isEven from '../src/games/isEven.js';
 
-console.log('Welcome to the Brain Games');
-
-const name = getName();
-
-greetUser(name);
-
-game(name);
+isEven();
