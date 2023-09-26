@@ -5,6 +5,7 @@ const gameRule = 'What is the result of the expression?';
 
 const genarateMathExpression = () => {
   const operations = ['+', '-', '*'];
+
   const firstOperand = randomInt(0, 10);
   const secondOperand = randomInt(0, 10);
   const operation = operations[randomInt(0, operations.length)];
@@ -12,8 +13,13 @@ const genarateMathExpression = () => {
   return `${firstOperand} ${operation} ${secondOperand}`;
 };
 
-const evaluateMathExpression = (mathExpression) => {
-  const result = evaluate(mathExpression);
+const evaluateMathExpression = (inputValue) => {
+  let result;
+  try {
+    result = evaluate(inputValue);
+  } catch {
+    result = inputValue;
+  }
   return `${result}`;
 };
 

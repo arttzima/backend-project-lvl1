@@ -2,7 +2,7 @@ import readlineSync from 'readline-sync';
 import { getPlayerName, greet } from './cli.js';
 
 const gameFlow = (rule, makeQuestion, checkAnswer) => {
-  console.log('Welcome to the Brain Games');
+  console.log('Welcome to the Brain Games!');
 
   const name = getPlayerName();
   greet(name);
