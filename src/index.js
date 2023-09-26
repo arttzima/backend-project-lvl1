@@ -1,9 +1,11 @@
 import readlineSync from 'readline-sync';
 import { getPlayerName, greet } from './cli.js';
 
-const gameFlow = (rule, makeQuestion, checkAnswer) => {
+const gameFlow = (rule, makeQuestion, prepeareRightAnswer) => {
+  // Print Intro
   console.log('Welcome to the Brain Games!');
 
+  // Get Player`s name and greeting
   const name = getPlayerName();
   greet(name);
   console.log(rule);
@@ -16,7 +18,7 @@ const gameFlow = (rule, makeQuestion, checkAnswer) => {
 
     const answer = readlineSync.question('Your answer: ');
     console.log('answer: ', answer);
-    const correctAnswer = checkAnswer(question);
+    const correctAnswer = prepeareRightAnswer(question);
     console.log('correctAnswer: ', correctAnswer);
 
     if (answer !== correctAnswer) {
