@@ -10,9 +10,16 @@ const generateRandomNumberToMax = () => {
 
 const isEven = (n) => n % 2 === 0;
 
-const checkNumberEvenAndGetAnswer = (n) => {
+const check = (n) => {
   const result = isEven(n) ? 'yes' : 'no';
   return result;
 };
 
-export default () => gameFlow(gameRule, generateRandomNumberToMax, checkNumberEvenAndGetAnswer);
+const generateQuestionWithCorrectAnswer = () => {
+  const question = generateRandomNumberToMax();
+  const correctAnswer = check(question);
+
+  return { question, correctAnswer };
+};
+
+export default () => gameFlow(gameRule, generateQuestionWithCorrectAnswer);

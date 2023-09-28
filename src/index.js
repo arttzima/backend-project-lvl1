@@ -1,11 +1,9 @@
 import readlineSync from 'readline-sync';
 import { getPlayerName, greet } from './cli.js';
 
-const gameFlow = (rule, makeQuestion, prepeareRightAnswer) => {
-  // Print Intro
+const gameFlow = (rule, makeQuestionWithRightAnswer) => {
   console.log('Welcome to the Brain Games!');
 
-  // Get Player`s name and greeting
   const name = getPlayerName();
   greet(name);
   console.log(rule);
@@ -13,22 +11,19 @@ const gameFlow = (rule, makeQuestion, prepeareRightAnswer) => {
   const TRYING = 3;
 
   for (let count = 0; count < TRYING; count += 1) {
-    const question = makeQuestion();
+    const { question, correctAnswer } = makeQuestionWithRightAnswer();
     console.log(`Question: ${question}`);
 
-    const answer = readlineSync.question('Your answer: ');
-    console.log('answer: ', answer);
-    const correctAnswer = prepeareRightAnswer(question);
-    console.log('correctAnswer: ', correctAnswer);
+    const playerAnswer = readlineSync.question('Your answer: ');
 
-    if (answer !== correctAnswer) {
-      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);
+    if (playerAnswer !== correctAnswer) {
+      console.log(`"${playerAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);
       return;
     }
     console.log('Correct!');
   }
 
-  console.log(`Congratulation ${name}!`);
+  console.log(`Congratulations, ${name}!`);
 };
 
 export default gameFlow;
