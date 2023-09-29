@@ -1,23 +1,22 @@
-import { randomInt } from 'mathjs';
+import { getRandomNumberRange, isEven } from '../functions.js';
 import gameFlow from '../index.js';
 
 const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-const generateRandomNumberToMax = () => {
+const makeQuestion = () => {
+  const min = 0;
   const max = 100;
-  return randomInt(max);
+  return getRandomNumberRange(min, max);
 };
 
-const isEven = (n) => n % 2 === 0;
-
-const check = (n) => {
+const getCorrectAnswer = (n) => {
   const result = isEven(n) ? 'yes' : 'no';
   return result;
 };
 
 const generateQuestionWithCorrectAnswer = () => {
-  const question = generateRandomNumberToMax();
-  const correctAnswer = check(question);
+  const question = makeQuestion();
+  const correctAnswer = getCorrectAnswer(question);
 
   return { question, correctAnswer };
 };
