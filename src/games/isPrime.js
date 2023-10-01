@@ -1,4 +1,4 @@
-import { randomInt, isPrime } from 'mathjs';
+import { getRandomNumberRange, isPrime } from '../functions.js';
 import gameFlow from '../index.js';
 
 const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
@@ -8,11 +8,11 @@ const check = (n) => {
   return result;
 };
 
-const genarateQuestionWithCorrectAnswer = () => {
-  const question = randomInt(-1, 100);
+const makeQuestionWithCorrectAnswer = () => {
+  const question = getRandomNumberRange(1, 100);
   const correctAnswer = check(question);
 
-  return { question: `${question}`, correctAnswer };
+  return { question, correctAnswer };
 };
 
-export default () => gameFlow(gameRule, genarateQuestionWithCorrectAnswer);
+export default () => gameFlow(gameRule, makeQuestionWithCorrectAnswer);

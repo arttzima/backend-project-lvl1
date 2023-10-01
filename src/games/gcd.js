@@ -1,25 +1,16 @@
-import { randomInt, gcd } from 'mathjs';
+import { getRandomNumberRange, gcd } from '../functions.js';
 import gameFlow from '../index.js';
 
 const gameRule = 'Find the greatest common divisor of given numbers.';
 
-const createQuestion = () => {
-  const min = 1;
-  const max = 20;
+const makeQuestionWithCorrectAnswer = () => {
+  const firstArgument = getRandomNumberRange(1, 10);
+  const secondArgument = getRandomNumberRange(1, 10);
 
-  return [randomInt(min, max), randomInt(min, max)];
+  const question = `${firstArgument} ${secondArgument}`;
+  const correctAnswer = `${gcd(firstArgument, secondArgument)}`;
+
+  return { question, correctAnswer };
 };
 
-const calculateCorrectAnswer = (value) => {
-  const result = gcd(value);
-  return `${result}`;
-};
-
-const generateQuestionWithCorrectAnswer = () => {
-  const question = createQuestion();
-  const correctAnswer = calculateCorrectAnswer(question);
-
-  return { question: question.join(' '), correctAnswer };
-};
-
-export default () => gameFlow(gameRule, generateQuestionWithCorrectAnswer);
+export default () => gameFlow(gameRule, makeQuestionWithCorrectAnswer);
